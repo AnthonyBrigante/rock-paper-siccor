@@ -4,7 +4,7 @@ let Greet = document.getElementById('greeting')
 //Put username in website
 userName 
 ? (Greet.innerText=`${userName}`)
-: (Greet.innerText=`Pubert`)
+: (Greet.innerText=`jackson`)
 
 
 //Puter choice
@@ -14,13 +14,13 @@ function Computer() {
     
     switch (randomNumber) {
         case 0:
-            imageChoice = 'IMGS/Rock.png';
+            imageChoice = 'imgs/the thing.jpg';
             break;
         case 1:
-            imageChoice = 'IMGS/Paper.png';
+            imageChoice = 'imgs/flatman.jpg';
             break;
         case 2:
-            imageChoice = 'IMGS/Scissors.png';
+            imageChoice = 'imgs/wolverine.jpg';
             break;
     }
     
@@ -29,30 +29,30 @@ function Computer() {
 
 // Game results
 function gameResult(userChoice, computerChoice) {
-    if (userChoice === 'Rock' && computerChoice === 'Paper') {
+    if (userChoice === 'imgs/the thing.jpg' && computerChoice === 'Paper') {
         return 'You Lose!';
-    } else if (userChoice === 'Rock' && computerChoice === 'Rock') {
+    } else if (userChoice === 'imgs/the thing.jpg' && computerChoice === 'imgs/the thing.jpg') {
         return 'You Tied!';
-    } else if (userChoice === 'Rock' && computerChoice === 'Scissors') {
+    } else if (userChoice === 'Rimgs/the thing.jpg' && computerChoice === 'imgs/wolverine.jpg') {
         return 'You Win!';
-    } else if (userChoice === 'Paper' && computerChoice === 'Paper') {
+    } else if (userChoice === 'imgs/flatman.jpg' && computerChoice === 'imgs/flatman.jpg') {
         return 'You Tied!';
-    } else if (userChoice === 'Paper' && computerChoice === 'Rock') {
+    } else if (userChoice === 'imgs/flatman.jpg' && computerChoice === 'imgs/the thing.jpg') {
         return 'You Win!';
-    } else if (userChoice === 'Paper' && computerChoice === 'Scissors') {
+    } else if (userChoice === 'imgs/flatman.jpg' && computerChoice === 'imgs/wolverine.jpg') {
         return 'You Lose!';
-    } else if (userChoice === 'Scissors' && computerChoice === 'Paper') {
+    } else if (userChoice === 'imgs/wolverine.jpg' && computerChoice === 'imgs/flatman.jpg') {
         return 'You Win!';
-    } else if (userChoice === 'Scissors' && computerChoice === 'Rock') {
+    } else if (userChoice === 'imgs/wolverine.jpg' && computerChoice === 'imgs/the thing.jpg') {
         return 'You Lose!';
-    } else if (userChoice === 'Scissors' && computerChoice === 'Scissors') {
+    } else if (userChoice === 'imgs/wolverine.jpg' && computerChoice === 'imgs/wolverine.jpg') {
         return 'You Tied!';
     }
 }
 
 //User buttons
 function choiceRock() {
-    const userChoice = 'Rock';
+    const userChoice = 'imgs/the thing.jpg';
     const computerChoice = Computer(); 
     const result = gameResult(userChoice, computerChoice); 
     alert(result); 
@@ -61,14 +61,14 @@ function choiceRock() {
 }
 
 function choicePaper() {
-    const userChoice = 'Paper';
+    const userChoice = 'imgs/flatman.jpg';
     const computerChoice = Computer();
     const result = gameResult(userChoice, computerChoice);
     alert(result);
 }
 
 function choiceScissors() {
-    const userChoice = 'Scissors';
+    const userChoice = 'imgs/wolverine.jpg';
     const computerChoice = Computer();
     const result = gameResult(userChoice, computerChoice);
     alert(result);
