@@ -1,76 +1,65 @@
-/* styles.css */
-
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Marvel', sans-serif;
+    background-color: #1b1b1b;
+    color: #fff;
+    text-align: center;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-.container {
-    text-align: center;
-    background-color: #e0e0e0;
+.game-container {
+    max-width: 800px;
+    margin: 50px auto;
     padding: 20px;
+    background: #2a2a2a;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-.header {
-    font-size: 24px;
-    font-weight: bold;
+h1 {
+    font-size: 2.5rem;
+    color: #e62429;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
     margin-bottom: 20px;
-    background-color: #d18b8b;
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
 }
 
 .choices {
+    margin: 20px 0;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .choice {
-    width: 100px;
-    height: 100px;
-    background-color: #ff4d4d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #444;
+    border: 2px solid #e62429;
     color: white;
-    font-weight: bold;
-    border-radius: 5px;
-    margin: 0 5px;
-}
-
-.score {
-    margin-bottom: 20px;
     font-size: 16px;
-    font-weight: bold;
-}
-
-.buttons {
-    display: flex;
-    justify-content: space-between;
-}
-
-.btn {
-    width: 90px;
-    height: 40px;
-    background-color: #4dff4d;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.btn:hover {
-    background-color: #3bd13b;
+.choice:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #e62429;
+}
+
+.choice img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.results p {
+    font-size: 1.2rem;
+    margin: 10px 0;
 }
