@@ -1,0 +1,54 @@
+body {
+    background-color: #181818;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+
+h1, h2 {
+    font-family: 'Impact', sans-serif;
+    text-shadow: 3px 3px 5px #ff0000, 0 0 25px #ff0000, 0 0 5px #ff0000;
+}
+
+.card-body {
+    background-color: #1d1d1d;
+    color: #fff;
+}
+
+.card {
+    margin: 10px;
+}
+
+.bingus {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.2s ease;
+}
+
+.bingus:hover {
+    transform: scale(1.1);
+}
+
+.btn {
+    background-color: #e62429;
+    border: none;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #cc1a23;
+    cursor: pointer;
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+#resultMessage {
+    font-size: 24px;
+    font-weight: bold;
+    color: #c52525;
+}
+body {
+    background-color: #181818;
+    font-family: 'Comic Sans MS', sans-serif

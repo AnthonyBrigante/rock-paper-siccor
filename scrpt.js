@@ -1,75 +1,94 @@
-// Get username prompt
-const userName = prompt('What is your name?')
-let Greet = document.getElementById('greeting')
-//Put username in website
-userName 
-? (Greet.innerText=`${userName}`)
-: (Greet.innerText=`jackson`)
+// Initialize greeting and score variables
+const userName = prompt('What is your name?');
+let Greet = document.getElementById('greeting');
 
+// Set username on the webpage
+userName ? (Greet.innerText = `${userName}`) : (Greet.innerText = `jackson`);
 
-//Puter choice
+// Score tracking
+let playerWins = 0;
+let computerWins = 0;
+
+// Function to get the computer's random choice
 function Computer() {
     let randomNumber = Math.floor(Math.random() * 3);
     let imageChoice;
-    
+
     switch (randomNumber) {
         case 0:
-            imageChoice = 'imgs/the thing.jpg';
+            imageChoice = 'imgs/the thing.jpg'; // Rock
             break;
         case 1:
-            imageChoice = 'imgs/flatman.jpg';
+            imageChoice = 'imgs/flatman.jpg'; // Paper
             break;
         case 2:
-            imageChoice = 'imgs/wolverine.jpg';
+            imageChoice = 'imgs/wolverine.jpg'; // Scissors
             break;
     }
-    
-    return imageChoice; 
+
+    return imageChoice;
 }
 
-// Game results
+// Update the result message and score
 function gameResult(userChoice, computerChoice) {
-    if (userChoice === 'imgs/the thing.jpg' && computerChoice === 'Paper') {
-        return 'You Lose!';
-    } else if (userChoice === 'imgs/the thing.jpg' && computerChoice === 'imgs/the thing.jpg') {
-        return 'You Tied!';
-    } else if (userChoice === 'Rimgs/the thing.jpg' && computerChoice === 'imgs/wolverine.jpg') {
-        return 'You Win!';
-    } else if (userChoice === 'imgs/flatman.jpg' && computerChoice === 'imgs/flatman.jpg') {
-        return 'You Tied!';
-    } else if (userChoice === 'imgs/flatman.jpg' && computerChoice === 'imgs/the thing.jpg') {
-        return 'You Win!';
-    } else if (userChoice === 'imgs/flatman.jpg' && computerChoice === 'imgs/wolverine.jpg') {
-        return 'You Lose!';
-    } else if (userChoice === 'imgs/wolverine.jpg' && computerChoice === 'imgs/flatman.jpg') {
-        return 'You Win!';
-    } else if (userChoice === 'imgs/wolverine.jpg' && computerChoice === 'imgs/the thing.jpg') {
-        return 'You Lose!';
-    } else if (userChoice === 'imgs/wolverine.jpg' && computerChoice === 'imgs/wolverine.jpg') {
-        return 'You Tied!';
+    let resultMessage = '';
+
+    // Determine the result of the round
+    if (userChoice === computerChoice) {
+        resultMessage = "It's a Tie!";
+    } else if (
+        (userChoice === 'imgs/the thing.jpg' && computerChoice === 'imgs/flatman.jpg') ||
+        (userChoice === 'imgs/flatman.jpg' && computerChoice === 'imgs/wolverine.jpg') ||
+        (userChoice === 'imgs/wolverine.jpg' && computerChoice === 'imgs/the thing.jpg')
+    ) {
+        resultMessage = 'You Win!';
+        playerWins++;
+    } else {
+        resultMessage = 'You Lose!';
+        computerWins++;
+    }
+
+    // Update the score board
+    document.getElementById('playerScore').innerText = `Player: ${playerWins}`;
+    document.getElementById('computerScore').innerText = `Computer: ${computerWins}`;
+
+    // Display the choices
+    document.getElementById('userImage').src = userChoice;
+    document.getElementById('computerImage').src = computerChoice;
+
+    // Check if the game has ended
+    if (playerWins === 3) {
+        document.getElementById('resultMessage').innerText = 'Congratulations! You Win the Game!';
+        disableButtons();
+    } else if (computerWins === 3) {
+        document.getElementById('resultMessage').innerText = 'Sorry, Computer Wins the Game!';
+        disableButtons();
+    } else {
+        document.getElementById('resultMessage').innerText = resultMessage;
     }
 }
 
-//User buttons
-function choiceRock() {
-    const userChoice = 'imgs/the thing.jpg';
-    const computerChoice = Computer(); 
-    const result = gameResult(userChoice, computerChoice); 
-    alert(result); 
-
-
+// Disable the buttons after the game ends
+function disableButtons() {
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => button.disabled = true);
 }
 
-function choicePaper() {
-    const userChoice = 'imgs/flatman.jpg';
+// Add event listeners for button clicks
+document.getElementById('rockButton').addEventListener('click', () => {
+    const userChoice = 'imgs/the thing.jpg'; // Rock
     const computerChoice = Computer();
-    const result = gameResult(userChoice, computerChoice);
-    alert(result);
-}
+    gameResult(userChoice, computerChoice);
+});
 
-function choiceScissors() {
-    const userChoice = 'imgs/wolverine.jpg';
+document.getElementById('paperButton').addEventListener('click', () => {
+    const userChoice = 'imgs/flatman.jpg'; // Paper
     const computerChoice = Computer();
-    const result = gameResult(userChoice, computerChoice);
-    alert(result);
-}
+    gameResult(userChoice, computerChoice);
+});
+
+document.getElementById('scissorsButton').addEventListener('click', () => {
+    const userChoice = 'imgs/wolverine.jpg'; // Scissors
+    const computerChoice = Computer();
+    gameResult(userChoice, computerChoice);
+});
