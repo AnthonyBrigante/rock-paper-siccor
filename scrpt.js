@@ -1,94 +1,71 @@
-// Initialize greeting and score variables
-const userName = prompt('What is your name?');
-let Greet = document.getElementById('greeting');
-
-// Set username on the webpage
-userName ? (Greet.innerText = `${userName}`) : (Greet.innerText = `jackson`);
-
-// Score tracking
-let playerWins = 0;
-let computerWins = 0;
-
-// Function to get the computer's random choice
-function Computer() {
-    let randomNumber = Math.floor(Math.random() * 3);
-    let imageChoice;
-
-    switch (randomNumber) {
-        case 0:
-            imageChoice = 'imgs/the thing.jpg'; // Rock
-            break;
-        case 1:
-            imageChoice = 'imgs/flatman.jpg'; // Paper
-            break;
-        case 2:
-            imageChoice = 'imgs/wolverine.jpg'; // Scissors
-            break;
-    }
-
-    return imageChoice;
-}
-
-// Update the result message and score
-function gameResult(userChoice, computerChoice) {
-    let resultMessage = '';
-
-    // Determine the result of the round
-    if (userChoice === computerChoice) {
-        resultMessage = "It's a Tie!";
+// Map choices to superheroes
+const choicesMap = {
+    thing: 'rock',
+    flatman: 'paper',
+    wolverine: 'scissors'
+  };
+  
+  const superheroes = {
+    thing: 'The Thing (Rock)',
+    flatman: 'Mister Fantastic (Paper)',
+    wolverine: 'Wolverine (Scissors)'
+  };
+  
+  let playerWins = 0;
+  let computerWins = 0;
+  
+  // Add event listeners for user choices
+  document.getElementById('thing').addEventListener('click', () => playGame('thing'));
+  document.getElementById('flatman').addEventListener('click', () => playGame('flatman'));
+  document.getElementById('wolverine').addEventListener('click', () => playGame('wolverine'));
+  
+  function playGame(userChoice) {
+    const computerChoiceKey = Object.keys(choicesMap)[Math.floor(Math.random() * 3)];
+    const userHero = superheroes[userChoice];
+    const computerHero = superheroes[computerChoiceKey];
+  
+    let resultMessage = `You chose ${userHero}. Computer chose ${computerHero}. `;
+  
+    if (choicesMap[userChoice] === choicesMap[computerChoiceKey]) {
+      resultMessage += "It's a tie!";
     } else if (
-        (userChoice === 'imgs/the thing.jpg' && computerChoice === 'imgs/flatman.jpg') ||
-        (userChoice === 'imgs/flatman.jpg' && computerChoice === 'imgs/wolverine.jpg') ||
-        (userChoice === 'imgs/wolverine.jpg' && computerChoice === 'imgs/the thing.jpg')
+      (choicesMap[userChoice] === 'rock' && choicesMap[computerChoiceKey] === 'scissors') ||
+      (choicesMap[userChoice] === 'paper' && choicesMap[computerChoiceKey] === 'rock') ||
+      (choicesMap[userChoice] === 'scissors' && choicesMap[computerChoiceKey] === 'paper')
     ) {
-        resultMessage = 'You Win!';
-        playerWins++;
+      resultMessage += "You win this round!";
+      playerWins++;
     } else {
-        resultMessage = 'You Lose!';
-        computerWins++;
+      resultMessage += "You lose this round!";
+      computerWins++;
     }
-
-    // Update the score board
-    document.getElementById('playerScore').innerText = `Player: ${playerWins}`;
-    document.getElementById('computerScore').innerText = `Computer: ${computerWins}`;
-
-    // Display the choices
-    document.getElementById('userImage').src = userChoice;
-    document.getElementById('computerImage').src = computerChoice;
-
-    // Check if the game has ended
+  
+    // Update the result message
+    document.getElementById('result').textContent = resultMessage;
+  
+    // Update the scoreboard
+    document.getElementById('player-wins').textContent = playerWins;
+    document.getElementById('computer-wins').textContent = computerWins;
+  
+    // Check for a winner
+    checkForWinner();
+  }
+  
+  function checkForWinner() {
     if (playerWins === 3) {
-        document.getElementById('resultMessage').innerText = 'Congratulations! You Win the Game!';
-        disableButtons();
+      alert("Congratulations! You won the game!");
+      resetGame();
     } else if (computerWins === 3) {
-        document.getElementById('resultMessage').innerText = 'Sorry, Computer Wins the Game!';
-        disableButtons();
-    } else {
-        document.getElementById('resultMessage').innerText = resultMessage;
+      alert("The computer won the game! Better luck next time!");
+      resetGame();
     }
-}
-
-// Disable the buttons after the game ends
-function disableButtons() {
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => button.disabled = true);
-}
-
-// Add event listeners for button clicks
-document.getElementById('rockButton').addEventListener('click', () => {
-    const userChoice = 'imgs/the thing.jpg'; // Rock
-    const computerChoice = Computer();
-    gameResult(userChoice, computerChoice);
-});
-
-document.getElementById('paperButton').addEventListener('click', () => {
-    const userChoice = 'imgs/flatman.jpg'; // Paper
-    const computerChoice = Computer();
-    gameResult(userChoice, computerChoice);
-});
-
-document.getElementById('scissorsButton').addEventListener('click', () => {
-    const userChoice = 'imgs/wolverine.jpg'; // Scissors
-    const computerChoice = Computer();
-    gameResult(userChoice, computerChoice);
-});
+  }
+  
+  function resetGame() {
+    playerWins = 0;
+    computerWins = 0;
+    document.getElementById('player-wins').textContent = playerWins;
+    document.getElementById('computer-wins').textContent = computerWins;
+    document.getElementById('result').textContent = "";
+  }
+  

@@ -1,54 +1,78 @@
+/* General styles */
 body {
-    background-color: #181818;
-    font-family: 'Comic Sans MS', sans-serif;
-}
-
-h1, h2 {
-    font-family: 'Impact', sans-serif;
-    text-shadow: 3px 3px 5px #ff0000, 0 0 25px #ff0000, 0 0 5px #ff0000;
-}
-
-.card-body {
-    background-color: #1d1d1d;
-    color: #fff;
-}
-
-.card {
-    margin: 10px;
-}
-
-.bingus {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: linear-gradient(to bottom, #1b1c1e, #252a34);
+    color: white;
+  }
+  
+  header {
+    background-color: #d81f26;
+    padding: 20px;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+  }
+  
+  .choices {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .choice {
+    border: none;
+    background: none;
+    margin: 0 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .choice:hover {
+    transform: scale(1.1);
+  }
+  
+  .choice img {
     width: 100px;
     height: 100px;
-    transition: transform 0.2s ease;
-}
-
-.bingus:hover {
-    transform: scale(1.1);
-}
-
-.btn {
-    background-color: #e62429;
-    border: none;
+    border-radius: 50%;
+    border: 3px solid #d81f26;
+    padding: 5px;
+    background: white;
+  }
+  
+  .choice p {
+    margin-top: 10px;
+    font-size: 1.2rem;
     font-weight: bold;
-}
-
-.btn:hover {
-    background-color: #cc1a23;
-    cursor: pointer;
-}
-
-.card-img-top {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-#resultMessage {
-    font-size: 24px;
+  }
+  
+  #result {
+    margin-top: 30px;
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #c52525;
-}
-body {
-    background-color: #181818;
-    font-family: 'Comic Sans MS', sans-serif
+  }
+  
+  .scoreboard {
+    margin-top: 30px;
+    font-size: 1.2rem;
+  }
+  
+  footer {
+    margin-top: 50px;
+    background: #111;
+    padding: 10px;
+    color: white;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
