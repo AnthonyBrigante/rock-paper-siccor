@@ -7,7 +7,7 @@ const choicesMap = {
   
   const superheroes = {
     thing: 'The Thing (Rock)',
-    flatman: 'Mister Fantastic (Paper)',
+    flatman: 'Flatman (Paper)',
     wolverine: 'Wolverine (Scissors)'
   };
   
