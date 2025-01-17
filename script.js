@@ -56,24 +56,66 @@ function playGame(userChoice) {
   document.getElementById("player-wins").textContent = playerWins;
   document.getElementById("computer-wins").textContent = computerWins;
 
-  // Check for a winner
+  // Check for a winner after each round
   checkForWinner();
 }
 
 function checkForWinner() {
-  if (playerWins === 3) {
-    alert(`Congratulations, ${playerName}! You won the game!`);
-    resetGame();
-  } else if (computerWins === 3) {
-    alert(`The computer won the game! Better luck next time, ${playerName}!`);
-    resetGame();
+  // Check if the player or computer has won 5 rounds
+  if (playerWins === 5) {
+    endGame(`Congratulations, ${playerName}! You won the game! Best out of five!`);
+  } else if (computerWins === 5) {
+    endGame(`The computer won the game! Better luck next time, ${playerName}!`);
   }
 }
 
+function endGame(message) {
+  alert(message);
+  // Create a reset button dynamically
+  const resetButton = document.createElement("button");
+  resetButton.textContent = "Play Again";
+  resetButton.id = "reset-button";
+  resetButton.style.marginTop = "20px";
+  resetButton.style.padding = "10px 20px";
+  resetButton.style.fontSize = "1.2rem";
+  resetButton.style.cursor = "pointer";
+  resetButton.style.border = "2px solid #d81f26";
+  resetButton.style.backgroundColor = "#f7d02c";
+  resetButton.style.color = "#d81f26";
+  resetButton.style.borderRadius = "5px";
+
+  // Append the button to the main element
+  document.querySelector("main").appendChild(resetButton);
+
+  // Add event listener to the reset button
+  resetButton.addEventListener("click", resetGame);
+
+  // Disable choice buttons after the game ends
+  document.querySelectorAll(".choice").forEach((button) => {
+    button.disabled = true;
+    button.style.opacity = "0.5";
+    button.style.cursor = "not-allowed";
+  });
+}
+
 function resetGame() {
+  // Reset the scores and UI
   playerWins = 0;
   computerWins = 0;
   document.getElementById("player-wins").textContent = playerWins;
   document.getElementById("computer-wins").textContent = computerWins;
   document.getElementById("result").textContent = "";
+
+  // Remove the reset button
+  const resetButton = document.getElementById("reset-button");
+  if (resetButton) {
+    resetButton.remove();
+  }
+
+  // Re-enable choice buttons
+  document.querySelectorAll(".choice").forEach((button) => {
+    button.disabled = false;
+    button.style.opacity = "1";
+    button.style.cursor = "pointer";
+  });
 }
